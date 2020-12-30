@@ -1,18 +1,264 @@
-<!DOCTYPE html>
-<html>
+<div class="col-md-12">
+<div class="main-image">
+<img src="/Upload/Blog/game-caro-qua-mang-lan-bang-python-63725711613.2609.jpg" alt="Làm Game Cờ Caro Qua Mạng LAN Bằng Python">
+</div>
+<div class="blog-content">
+<h1>Làm Game Cờ Caro Qua Mạng LAN Bằng Python</h1>
+<div class="content">
+<p><strong>Cờ Caro là một Game trí tuệ đã rất quen thuộc với mỗi chúng ta. Với lối chơi đơn giản nhưng yếu tố trí tuệ lại rất cao nên cờ Caro được rất nhiều người yêu thích đặc biệt là các bạn học sinh, sinh viên và dân văn phòng. Game cờ Caro không chỉ mang tính chất giải trí đơn thuần mà là một cuộc đấu trí vô cùng gay cấn. </strong></p>
+<p>Hãy cùng mình làm một chương trình chơi cờ Caro đơn giản để cùng chơi với bạn bè của mình nhé.</p>
+<h3><strong>Thuật ngữ và cách chơi trong Game.</strong></h3>
+<h4><strong>Thuật ngữ :</strong></h4>
+<ul>
+<li>Quân cờ: trong game sử dụng bộ dấu ký hiệu X/O .</li>
+<li>Bàn cờ Caro
+<ul>
+<li>Sử dụng bàn cờ kích thước X×Y (ô vuông)</li>
+<li>Trên một bàn cờ chỉ cho phép 2 người tham gia.</li>
+</ul>
+</li>
+<li>Lượt chơi (tick X/O)
+<ul>
+<li>Một ván cờ có thể gồm nhiều lượt chơi.</li>
+<li>Mỗi lượt người chơi thực hiện tick các dấu X/O vào hình vuông trên bàn cờ.</li>
+</ul>
+</li>
+</ul>
+<h4>Luật chơi :</h4>
+<p>Luật chơi cũng như cách chơi cờ caro hết sức đơn giản, hai bên thay phiên nhau tích vào những ô vuông trên bàn cờ, để tạo thành đường 5 quân theo hàng dọc, hàng ngang hoặc đường chéo là thắng. Tuy nhiên, nếu muốn chiến thắng khi chơi cờ caro bạn phải tạo ra những thế cờ độc, dùng chiến thuật và kinh nghiệm để đánh lừa và hạ gục đối thủ.</p>
+<p>Bài viết mặc định yêu cầu bạn đã có kiến thức về <a href="https://codelearn.io/learning/python-co-ban">Python cơ bản</a> nhé</p>
+<h3><strong>Cài đặt Python&nbsp;và thư viện cần thiết.</strong></h3>
+<h4><strong>1. Cài đặt python :</strong></h4>
+<p>Các bạn click vào <a href="https://o7planning.org/vi/11375/huong-dan-cai-dat-va-cau-hinh-python">Taị đây</a> để được hướng dẫn cài đặt Python</p>
+<h4><strong>2. Cài đặt thư viện cho Python :</strong></h4>
+<pre class="  language-python"><code class="  language-python">pip install tk</code></pre>
+<h3>Bắt đầu lập trình thôi nào.</h3>
+<h4>1. Import các thư viện cần thiết&nbsp;</h4>
+<p>Mình dùng các thư viện&nbsp; <code>tkinter</code>, <code>threading</code>, <code>socket</code> để tạo giao diện, xử lý đa luồng và kết nối hai chương trình với nhau.</p>
+<pre class="  language-python"><code class="  language-python"><span class="token keyword">import</span> tkinter <span class="token keyword">as</span> tk
+<span class="token keyword">from</span> functools <span class="token keyword">import</span> partial
+<span class="token keyword">import</span> threading
+<span class="token keyword">import</span> socket
+<span class="token keyword">from</span> tkinter <span class="token keyword">import</span> messagebox</code></pre>
+<h4>2. Tạo giao diện cho chương trình&nbsp;</h4>
+<p>Mình tạo khởi tạo một lớp Window kế thừa từ tk.TK.</p>
+<pre class="  language-python"><code class="  language-python"><span class="token keyword">class</span> <span class="token class-name">Window</span><span class="token punctuation">(</span>tk<span class="token punctuation">.</span>Tk<span class="token punctuation">)</span><span class="token punctuation">:</span></code></pre>
+<p>Hàm khởi tạo và tạo các thành phần trong GUI như Frame, Button, Label,....</p>
+<pre class="  language-python"><code class="  language-python"><span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">"Caro Tkinter - codelearn.io"</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>Buts <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        self<span class="token punctuation">.</span>memory <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        self<span class="token punctuation">.</span>Threading_socket <span class="token operator">=</span> Threading_socket<span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>Threading_socket<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
 
-<head>
-    <meta charset="utf-8">
-    <title>WebAssembly Example</title>
-    <script src="script.js"></script>
-</head>
+    <span class="token keyword">def</span> <span class="token function">showFrame</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        frame1 <span class="token operator">=</span> tk<span class="token punctuation">.</span>Frame<span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+        frame1<span class="token punctuation">.</span>pack<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        frame2 <span class="token operator">=</span> tk<span class="token punctuation">.</span>Frame<span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+        frame2<span class="token punctuation">.</span>pack<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-<body>
-    <input type="number" id="numA" />
-    <input type="number" id="numB" />
-    <br>
-    <button id="addBtn">Add</button>
-    <span id="result"></span>
-</body>
+        Undo <span class="token operator">=</span> tk<span class="token punctuation">.</span>Button<span class="token punctuation">(</span>frame1<span class="token punctuation">,</span> text<span class="token operator">=</span><span class="token string">"Undo"</span><span class="token punctuation">,</span> width<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span>  <span class="token comment"># nút quay lại</span>
+                         command<span class="token operator">=</span>partial<span class="token punctuation">(</span>self<span class="token punctuation">.</span>Undo<span class="token punctuation">,</span> synchronized<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        Undo<span class="token punctuation">.</span>grid<span class="token punctuation">(</span>row<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> column<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> padx<span class="token operator">=</span><span class="token number">30</span><span class="token punctuation">)</span>
 
-</html>
+        tk<span class="token punctuation">.</span>Label<span class="token punctuation">(</span>frame1<span class="token punctuation">,</span> text<span class="token operator">=</span><span class="token string">"IP"</span><span class="token punctuation">,</span> pady<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">.</span>grid<span class="token punctuation">(</span>row<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> column<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+        inputIp <span class="token operator">=</span> tk<span class="token punctuation">.</span>Entry<span class="token punctuation">(</span>frame1<span class="token punctuation">,</span> width<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">)</span>  <span class="token comment"># Khung nhập địa chỉ ip</span>
+        inputIp<span class="token punctuation">.</span>grid<span class="token punctuation">(</span>row<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> column<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> padx<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span>
+        connectBT <span class="token operator">=</span> tk<span class="token punctuation">.</span>Button<span class="token punctuation">(</span>frame1<span class="token punctuation">,</span> text<span class="token operator">=</span><span class="token string">"Connect"</span><span class="token punctuation">,</span> width<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span>
+                              command<span class="token operator">=</span><span class="token keyword">lambda</span><span class="token punctuation">:</span> self<span class="token punctuation">.</span>Threading_socket<span class="token punctuation">.</span>clientAction<span class="token punctuation">(</span>inputIp<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        connectBT<span class="token punctuation">.</span>grid<span class="token punctuation">(</span>row<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> column<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span> padx<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span>
+
+        makeHostBT <span class="token operator">=</span> tk<span class="token punctuation">.</span>Button<span class="token punctuation">(</span>frame1<span class="token punctuation">,</span> text<span class="token operator">=</span><span class="token string">"MakeHost"</span><span class="token punctuation">,</span> width<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span>  <span class="token comment"># nút tạo host</span>
+                               command<span class="token operator">=</span><span class="token keyword">lambda</span><span class="token punctuation">:</span> self<span class="token punctuation">.</span>Threading_socket<span class="token punctuation">.</span>serverAction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        makeHostBT<span class="token punctuation">.</span>grid<span class="token punctuation">(</span>row<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> column<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">,</span> padx<span class="token operator">=</span><span class="token number">30</span><span class="token punctuation">)</span>
+        <span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>Ox<span class="token punctuation">)</span><span class="token punctuation">:</span>   <span class="token comment"># tạo ma trận button Ox * Oy</span>
+            <span class="token keyword">for</span> y <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>Oy<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                self<span class="token punctuation">.</span>Buts<span class="token punctuation">[</span>x<span class="token punctuation">,</span> y<span class="token punctuation">]</span> <span class="token operator">=</span> tk<span class="token punctuation">.</span>Button<span class="token punctuation">(</span>frame2<span class="token punctuation">,</span> font<span class="token operator">=</span><span class="token punctuation">(</span><span class="token string">'arial'</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">,</span> <span class="token string">'bold'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> height<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> width<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span>
+                                            borderwidth<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> command<span class="token operator">=</span>partial<span class="token punctuation">(</span>self<span class="token punctuation">.</span>handleButton<span class="token punctuation">,</span> x<span class="token operator">=</span>x<span class="token punctuation">,</span> y<span class="token operator">=</span>y<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                self<span class="token punctuation">.</span>Buts<span class="token punctuation">[</span>x<span class="token punctuation">,</span> y<span class="token punctuation">]</span><span class="token punctuation">.</span>grid<span class="token punctuation">(</span>row<span class="token operator">=</span>x<span class="token punctuation">,</span> column<span class="token operator">=</span>y<span class="token punctuation">)</span></code></pre>
+<p>Chúng ta tạo các hàm xử lý Button, kiểm tra người chiến thắng, thông báo và quay lại nước đánh trước.</p>
+<pre class="  language-python"><code class="  language-python"><span class="token keyword">def</span> <span class="token function">handleButton</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>Buts<span class="token punctuation">[</span>x<span class="token punctuation">,</span> y<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'text'</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">""</span><span class="token punctuation">:</span> <span class="token comment">#Kiểm tra ô có ký tự rỗng hay không</span>
+            <span class="token keyword">if</span> self<span class="token punctuation">.</span>memory<span class="token punctuation">.</span>count<span class="token punctuation">(</span><span class="token punctuation">[</span>x<span class="token punctuation">,</span> y<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+                self<span class="token punctuation">.</span>memory<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">[</span>x<span class="token punctuation">,</span> y<span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>memory<span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
+                self<span class="token punctuation">.</span>Buts<span class="token punctuation">[</span>x<span class="token punctuation">,</span> y<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'text'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'O'</span>
+                self<span class="token punctuation">.</span>Threading_socket<span class="token punctuation">.</span>sendData<span class="token punctuation">(</span><span class="token string">"{}|{}|{}|"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token string">"hit"</span><span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>checkWin<span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> <span class="token string">"O"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    self<span class="token punctuation">.</span>notification<span class="token punctuation">(</span><span class="token string">"Winner"</span><span class="token punctuation">,</span> <span class="token string">"O"</span><span class="token punctuation">)</span>
+                    self<span class="token punctuation">.</span>newGame<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                <span class="token keyword">print</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>Threading_socket<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
+                self<span class="token punctuation">.</span>Buts<span class="token punctuation">[</span>x<span class="token punctuation">,</span> y<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'text'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'X'</span>
+                self<span class="token punctuation">.</span>Threading_socket<span class="token punctuation">.</span>sendData<span class="token punctuation">(</span><span class="token string">"{}|{}|{}|"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token string">"hit"</span><span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>checkWin<span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> <span class="token string">"X"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    self<span class="token punctuation">.</span>notification<span class="token punctuation">(</span><span class="token string">"Winner"</span><span class="token punctuation">,</span> <span class="token string">"X"</span><span class="token punctuation">)</span>
+                    self<span class="token punctuation">.</span>newGame<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">notification</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> title<span class="token punctuation">,</span> msg<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        messagebox<span class="token punctuation">.</span>showinfo<span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">(</span>title<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">str</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">checkWin</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> XO<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        count <span class="token operator">=</span> <span class="token number">0</span>
+        i<span class="token punctuation">,</span> j <span class="token operator">=</span> x<span class="token punctuation">,</span> y
+        <span class="token keyword">while</span><span class="token punctuation">(</span>j <span class="token operator">&lt;</span> Ox <span class="token keyword">and</span> self<span class="token punctuation">.</span>Buts<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"text"</span><span class="token punctuation">]</span> <span class="token operator">==</span> XO<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            count <span class="token operator">+=</span> <span class="token number">1</span>
+            j <span class="token operator">+=</span> <span class="token number">1</span>
+        j <span class="token operator">=</span> y
+        <span class="token keyword">while</span><span class="token punctuation">(</span>j <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token keyword">and</span> self<span class="token punctuation">.</span>Buts<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"text"</span><span class="token punctuation">]</span> <span class="token operator">==</span> XO<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            count <span class="token operator">+=</span> <span class="token number">1</span>
+            j <span class="token operator">-=</span> <span class="token number">1</span>
+        <span class="token keyword">if</span> count <span class="token operator">&gt;=</span> <span class="token number">6</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">True</span>
+        <span class="token comment"># check cột</span>
+        count <span class="token operator">=</span> <span class="token number">0</span>
+        i<span class="token punctuation">,</span> j <span class="token operator">=</span> x<span class="token punctuation">,</span> y
+        <span class="token keyword">while</span><span class="token punctuation">(</span>i <span class="token operator">&lt;</span> Oy <span class="token keyword">and</span> self<span class="token punctuation">.</span>Buts<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"text"</span><span class="token punctuation">]</span> <span class="token operator">==</span> XO<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            count <span class="token operator">+=</span> <span class="token number">1</span>
+            i <span class="token operator">+=</span> <span class="token number">1</span>
+        i <span class="token operator">=</span> x
+        <span class="token keyword">while</span><span class="token punctuation">(</span>i <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token keyword">and</span> self<span class="token punctuation">.</span>Buts<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"text"</span><span class="token punctuation">]</span> <span class="token operator">==</span> XO<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            count <span class="token operator">+=</span> <span class="token number">1</span>
+            i <span class="token operator">-=</span> <span class="token number">1</span>
+        <span class="token keyword">if</span> count <span class="token operator">&gt;=</span> <span class="token number">6</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">True</span>
+        <span class="token comment"># check cheo phai</span>
+        count <span class="token operator">=</span> <span class="token number">0</span>
+        i<span class="token punctuation">,</span> j <span class="token operator">=</span> x<span class="token punctuation">,</span> y
+        <span class="token keyword">while</span><span class="token punctuation">(</span>i <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token keyword">and</span> j <span class="token operator">&lt;</span> Ox <span class="token keyword">and</span> self<span class="token punctuation">.</span>Buts<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"text"</span><span class="token punctuation">]</span> <span class="token operator">==</span> XO<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            count <span class="token operator">+=</span> <span class="token number">1</span>
+            i <span class="token operator">-=</span> <span class="token number">1</span>
+            j <span class="token operator">+=</span> <span class="token number">1</span>
+        i<span class="token punctuation">,</span> j <span class="token operator">=</span> x<span class="token punctuation">,</span> y
+        <span class="token keyword">while</span><span class="token punctuation">(</span>i <span class="token operator">&lt;=</span> Oy <span class="token keyword">and</span> j <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token keyword">and</span> self<span class="token punctuation">.</span>Buts<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"text"</span><span class="token punctuation">]</span> <span class="token operator">==</span> XO<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            count <span class="token operator">+=</span> <span class="token number">1</span>
+            i <span class="token operator">+=</span> <span class="token number">1</span>
+            j <span class="token operator">-=</span> <span class="token number">1</span>
+        <span class="token keyword">if</span> count <span class="token operator">&gt;=</span> <span class="token number">6</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">True</span>
+        <span class="token comment"># check cheo trai</span>
+        count <span class="token operator">=</span> <span class="token number">0</span>
+        i<span class="token punctuation">,</span> j <span class="token operator">=</span> x<span class="token punctuation">,</span> y
+        <span class="token keyword">while</span><span class="token punctuation">(</span>i <span class="token operator">&lt;</span> Ox <span class="token keyword">and</span> j <span class="token operator">&lt;</span> Oy <span class="token keyword">and</span> self<span class="token punctuation">.</span>Buts<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"text"</span><span class="token punctuation">]</span> <span class="token operator">==</span> XO<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            count <span class="token operator">+=</span> <span class="token number">1</span>
+            i <span class="token operator">+=</span> <span class="token number">1</span>
+            j <span class="token operator">+=</span> <span class="token number">1</span>
+        i<span class="token punctuation">,</span> j <span class="token operator">=</span> x<span class="token punctuation">,</span> y
+        <span class="token keyword">while</span><span class="token punctuation">(</span>i <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token keyword">and</span> j <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token keyword">and</span> self<span class="token punctuation">.</span>Buts<span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"text"</span><span class="token punctuation">]</span> <span class="token operator">==</span> XO<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            count <span class="token operator">+=</span> <span class="token number">1</span>
+            i <span class="token operator">-=</span> <span class="token number">1</span>
+            j <span class="token operator">-=</span> <span class="token number">1</span>
+        <span class="token keyword">if</span> count <span class="token operator">&gt;=</span> <span class="token number">6</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">True</span>
+        <span class="token keyword">return</span> <span class="token boolean">False</span>
+
+    <span class="token keyword">def</span> <span class="token function">Undo</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> synchronized<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>memory<span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> self<span class="token punctuation">.</span>memory<span class="token punctuation">[</span><span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>memory<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+            y <span class="token operator">=</span> self<span class="token punctuation">.</span>memory<span class="token punctuation">[</span><span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>memory<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+            <span class="token comment"># print(x,y)</span>
+            self<span class="token punctuation">.</span>Buts<span class="token punctuation">[</span>x<span class="token punctuation">,</span> y<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'text'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">""</span>
+            self<span class="token punctuation">.</span>memory<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span> synchronized <span class="token operator">==</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+                self<span class="token punctuation">.</span>Threading_socket<span class="token punctuation">.</span>sendData<span class="token punctuation">(</span><span class="token string">"{}|"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token string">"Undo"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>memory<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"No character"</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">newGame</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>Ox<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">for</span> y <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>Oy<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                self<span class="token punctuation">.</span>Buts<span class="token punctuation">[</span>x<span class="token punctuation">,</span> y<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"text"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">""</span></code></pre>
+<h4>2. Tao lớp đồng bộ dữ liều người chơi giữa hai chương trình :</h4>
+<p>Khởi tạo Class Threading_socket.</p>
+<pre class="  language-python"><code class="  language-python"><span class="token keyword">class</span> <span class="token class-name">Threading_socket</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></code></pre>
+<p>Hàm&nbsp; <code>clientAction&nbsp;</code>và&nbsp;<code>serverAction </code>sử dụng socket gửi và nhận dữ liệu qua lại giữa hai chương trình.</p>
+<pre class="  language-python"><code class="  language-python"><span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> gui<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>dataReceive <span class="token operator">=</span> <span class="token string">""</span>
+        self<span class="token punctuation">.</span>conn <span class="token operator">=</span> <span class="token boolean">None</span>
+        self<span class="token punctuation">.</span>gui <span class="token operator">=</span> gui
+        self<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">""</span>
+
+    <span class="token keyword">def</span> <span class="token function">clientAction</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> inputIP<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"client"</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"client connect ..............."</span><span class="token punctuation">)</span>
+        HOST <span class="token operator">=</span> inputIP  <span class="token comment"># Cấu hình địa chỉ server</span>
+        PORT <span class="token operator">=</span> <span class="token number">8000</span>              <span class="token comment"># Cấu hình Port sử dụng</span>
+        self<span class="token punctuation">.</span>conn <span class="token operator">=</span> socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span>
+            socket<span class="token punctuation">.</span>AF_INET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SOCK_STREAM<span class="token punctuation">)</span>  <span class="token comment"># Cấu hình socket</span>
+        self<span class="token punctuation">.</span>conn<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token punctuation">(</span>HOST<span class="token punctuation">,</span> PORT<span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># tiến hành kết nối đến server</span>
+        self<span class="token punctuation">.</span>gui<span class="token punctuation">.</span>notification<span class="token punctuation">(</span><span class="token string">"Đã kết nối tới"</span><span class="token punctuation">,</span> <span class="token builtin">str</span><span class="token punctuation">(</span>HOST<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        t1 <span class="token operator">=</span> threading<span class="token punctuation">.</span>Thread<span class="token punctuation">(</span>target<span class="token operator">=</span>self<span class="token punctuation">.</span>client<span class="token punctuation">)</span>  <span class="token comment"># tạo luồng chạy client</span>
+        t1<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">client</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>dataReceive <span class="token operator">=</span> self<span class="token punctuation">.</span>conn<span class="token punctuation">.</span>recv<span class="token punctuation">(</span>
+                <span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># Đọc dữ liệu server trả về</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>dataReceive <span class="token operator">!=</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                friend <span class="token operator">=</span> self<span class="token punctuation">.</span>dataReceive<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">"|"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+                action <span class="token operator">=</span> self<span class="token punctuation">.</span>dataReceive<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">"|"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>action <span class="token operator">==</span> <span class="token string">"hit"</span> <span class="token keyword">and</span> friend <span class="token operator">==</span> <span class="token string">"server"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    <span class="token comment">#     print(self.dataReceive)</span>
+                    x <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>dataReceive<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">"|"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                    y <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>dataReceive<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">"|"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                    self<span class="token punctuation">.</span>gui<span class="token punctuation">.</span>handleButton<span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>action <span class="token operator">==</span> <span class="token string">"Undo"</span> <span class="token keyword">and</span> friend <span class="token operator">==</span> <span class="token string">"server"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+                    self<span class="token punctuation">.</span>gui<span class="token punctuation">.</span>Undo<span class="token punctuation">(</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>dataReceive <span class="token operator">=</span> <span class="token string">""</span>
+
+    <span class="token keyword">def</span> <span class="token function">serverAction</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"server"</span>
+        HOST <span class="token operator">=</span> socket<span class="token punctuation">.</span>gethostbyname<span class="token punctuation">(</span>socket<span class="token punctuation">.</span>gethostname<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># Láy  lập địa chỉ</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Make host.........."</span> <span class="token operator">+</span> HOST<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>gui<span class="token punctuation">.</span>notification<span class="token punctuation">(</span><span class="token string">"Gui IP chp ban"</span><span class="token punctuation">,</span> <span class="token builtin">str</span><span class="token punctuation">(</span>HOST<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        PORT <span class="token operator">=</span> <span class="token number">8000</span>  <span class="token comment"># Thiết lập port lắng nghe</span>
+        <span class="token comment"># cấu hình kết nối</span>
+        s <span class="token operator">=</span> socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span>socket<span class="token punctuation">.</span>AF_INET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SOCK_STREAM<span class="token punctuation">)</span>
+        s<span class="token punctuation">.</span>bind<span class="token punctuation">(</span><span class="token punctuation">(</span>HOST<span class="token punctuation">,</span> PORT<span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># lắng nghe</span>
+        s<span class="token punctuation">.</span>listen<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>  <span class="token comment"># thiết lập tối ta 1 kết nối đồng thời</span>
+        self<span class="token punctuation">.</span>conn<span class="token punctuation">,</span> addr <span class="token operator">=</span> s<span class="token punctuation">.</span>accept<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># chấp nhận kết nối và trả về thông số</span>
+        t2 <span class="token operator">=</span> threading<span class="token punctuation">.</span>Thread<span class="token punctuation">(</span>target<span class="token operator">=</span>self<span class="token punctuation">.</span>server<span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>addr<span class="token punctuation">,</span> s<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        t2<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">server</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> addr<span class="token punctuation">,</span> s<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            <span class="token comment"># in ra thông địa chỉ của client</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Connected by'</span><span class="token punctuation">,</span> addr<span class="token punctuation">)</span>
+            <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+                <span class="token comment"># Đọc nội dung client gửi đến</span>
+                self<span class="token punctuation">.</span>dataReceive <span class="token operator">=</span> self<span class="token punctuation">.</span>conn<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>dataReceive <span class="token operator">!=</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    friend <span class="token operator">=</span> self<span class="token punctuation">.</span>dataReceive<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">"|"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+                    action <span class="token operator">=</span> self<span class="token punctuation">.</span>dataReceive<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">"|"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+                    <span class="token keyword">print</span><span class="token punctuation">(</span>action<span class="token punctuation">)</span>
+                    <span class="token keyword">if</span><span class="token punctuation">(</span>action <span class="token operator">==</span> <span class="token string">"hit"</span> <span class="token keyword">and</span> friend <span class="token operator">==</span> <span class="token string">"client"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                        x <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>dataReceive<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">"|"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                        y <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>dataReceive<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">"|"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                        self<span class="token punctuation">.</span>gui<span class="token punctuation">.</span>handleButton<span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+                    <span class="token keyword">if</span><span class="token punctuation">(</span>action <span class="token operator">==</span> <span class="token string">"Undo"</span> <span class="token keyword">and</span> friend <span class="token operator">==</span> <span class="token string">"client"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                        self<span class="token punctuation">.</span>gui<span class="token punctuation">.</span>Undo<span class="token punctuation">(</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+                self<span class="token punctuation">.</span>dataReceive <span class="token operator">=</span> <span class="token string">""</span>
+        <span class="token keyword">finally</span><span class="token punctuation">:</span>
+            s<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># đóng socket</span>
+
+    <span class="token keyword">def</span> <span class="token function">sendData</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># Gửi dữ liệu lên server`</span>
+        self<span class="token punctuation">.</span>conn<span class="token punctuation">.</span>sendall<span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">(</span><span class="token string">"{}|"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>name<span class="token punctuation">)</span> <span class="token operator">+</span> data<span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<h4><strong>3. Khởi tạo hàm main và chạy chương trình :</strong></h4>
+<pre class="  language-python"><code class="  language-python"><span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    Ox <span class="token operator">=</span> <span class="token number">20</span>  <span class="token comment"># Số lượng ô theo trục X</span>
+    Oy <span class="token operator">=</span> <span class="token number">20</span> <span class="token comment"># Số lượng ô theo trục Y</span>
+    window <span class="token operator">=</span> Window<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    window<span class="token punctuation">.</span>showFrame<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    window<span class="token punctuation">.</span>mainloop<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<h3><strong>Kết.</strong></h3>
+<p>Trên đây là bài hướng dẫn lập trình Caro hai người chơi qua mạng Lan bằng Python. Rất mong sự ủng hộ của các bạn, nếu các bạn thấy bài viết có giá trị thì hãy share để ủng hộ mình nhé.</p>
+<p><video width="2933" height="424" src="/Media/Default/Users/duyduysysy/game-co-caro-2-nguoi-choi-qua-mang-lan/CuteScreenRecorder-1366-768_(new).webm" controls="controls"></video></p>
+<div id="eJOY__extension_root" style="all: unset;"></div>
+</div>
+</div>
+</div>
