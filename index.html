@@ -1,3 +1,290 @@
+<html lang="vi" class="static dir-ltr codecamp-blog" dir="ltr"><script src="https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.vi.RtB5B1e5jPU.O/m=auth2/rt=j/sv=1/d=1/ed=1/am=wQE/rs=AGLTcCMtyT7gJt8TJN2EW_l75ORYrYqkdw/cb=gapi.loaded_0" async=""></script><script src="https://connect.facebook.net/signals/config/700313553710795?v=2.9.31&amp;r=stable" async=""></script><script src="https://connect.facebook.net/vi_VN/sdk.js?hash=a5f81b6b2814ccba85c600cf33e106a7&amp;ua=modern_es6" async="" crossorigin="anonymous"></script><script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://www.gstatic.com/recaptcha/releases/qc5B-qjP0QEimFYUxcpWJy5B/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-EauiKN7dy30bq/wDo7lcvebLQr7wwQPtEV6A1G43RAWnhPwxWZFCCTOT/hE+ffe3"></script><script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script><script id="facebook-jssdk" src="https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js"></script><head>
+<meta charset="utf-8">
+<meta name="description" content="Game cờ Caro không chỉ để giải trí đơn thuần mà là một cuộc đấu trí vô cùng gay cấn. Hôm nay mình sẽ hướng dẫn các bạn lập trình game này với Python nhé">
+<meta name="author" content="CodeLearn">
+<link rel="shortcut icon" href="/Themes/TheCodeCampPro/Resources/Images/content/codelearn-icon.png">
+<link rel="apple-touch-icon" href="/Themes/TheCodeCampPro/Resources/Images/content/codelearn-icon.png">
+<link rel="canonical" href="/sharing/game-caro-qua-mang-lan-bang-python">
+<link rel="alternate" hreflang="vi" href="https://codelearn.io/sharing/game-caro-qua-mang-lan-bang-python">
+<link rel="alternate" hreflang="en-US" href="https://codelearn.io/sharing/game-caro-qua-mang-lan-bang-python">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0">
+<title>Làm Game Cờ Caro Qua Mạng LAN Bằng Python</title>
+
+<meta property="og:title" content="Làm Game Cờ Caro Qua Mạng LAN Bằng Python">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://codelearn.io/sharing/game-caro-qua-mang-lan-bang-python">
+<meta property="og:description" content="Game cờ Caro không chỉ để giải trí đơn thuần mà là một cuộc đấu trí vô cùng gay cấn. Hôm nay mình sẽ hướng dẫn các bạn lập trình game này với Python nhé">
+<meta property="og:image" content="/Upload/Blog/game-caro-qua-mang-lan-bang-python-63725711613.2609.jpg">
+<meta property="fb:app_id" content="648326032295473">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:url" content="https://codelearn.io/sharing/game-caro-qua-mang-lan-bang-python">
+<meta name="twitter:title" content="Làm Game Cờ Caro Qua Mạng LAN Bằng Python">
+<meta name="twitter:description" content="Game cờ Caro không chỉ để giải trí đơn thuần mà là một cuộc đấu trí vô cùng gay cấn. Hôm nay mình sẽ hướng dẫn các bạn lập trình game này với Python nhé">
+<meta name="twitter:image" content="/Upload/Blog/game-caro-qua-mang-lan-bang-python-63725711613.2609.jpg">
+<meta name="twitter:site" content="@Codelearn.io">
+<meta name="twitter:creator" content="@Codelearn.io">
+
+<meta name="google-signin-client_id" content="16523143533-ovv9lj8c7i8sv36sv3lguom0msmdk8ah.apps.googleusercontent.com">
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-141685371-1"></script>
+<script>
+        var isGetNotification = true;
+        var isNotCountComment = false;
+
+        var s3Storage = '';
+        var resourcePath = '/Themes/TheCodeCampPro/Resources';
+        var strAuthen = '';
+        var faceId = '648326032295473';
+        var isLoadedFacebook = 'False';
+        if (strAuthen == '') {
+            var googleId = '16523143533-ovv9lj8c7i8sv36sv3lguom0msmdk8ah.apps.googleusercontent.com';
+        }
+
+        if (strAuthen == '') {
+            var LOGIN_VALIDATOR, SIGNUP_VALIDATOR;
+            function openModal(tab) {
+
+                $('#loginModal a[data-target="#' + tab + '"]').tab('show');
+                switch (tab) {
+                    case 'login':
+                        $(".btn--facebook").attr('title', 'Đăng nhập bằng Facebook');
+                        $(".btn--google").attr('title', 'Đăng nhập bằng Google');
+                        $("#loginModal .header-card").text('Đăng nhập tài khoản của bạn');
+                        SIGNUP_VALIDATOR && SIGNUP_VALIDATOR.resetForm();
+                        break;
+                    case 'signup':
+                        $(".btn--facebook").attr('title', 'Tiếp tục với Facebook');
+                        $(".btn--google").attr('title', 'Tiếp tục với Google');
+                        $("#loginModal .header-card").text('Đăng ký tài khoản mới');
+                        LOGIN_VALIDATOR && LOGIN_VALIDATOR.resetForm();
+                        break;
+                }
+            }
+        }
+
+        if ('https://codelearn.io' == location.origin.toLocaleLowerCase()) {
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+
+            gtag('js', new Date());
+            gtag('config', 'UA-141685371-1');
+            gtag('config', 'USER_MANAGEMENT');
+            gtag('set', { 'user_id': 'CodeLearn-Anonymous' });
+
+            // Measure Google Ads conversions
+            gtag('event', 'conversion', {
+                'send_to': 'USER_MANAGEMENT/CodeLearn-Anonymous',
+            });
+
+            window['GoogleAnalyticsObject'] = 'ga';
+            window['ga'] = window['ga'] || function () {
+                (window['ga'].q = window['ga'].q || []).push(arguments)
+            };
+            ga('set', 'userId', 'CodeLearn-Anonymous' );
+        }
+
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: faceId,
+                xfbml: true,
+                version: 'v7.0'
+            });
+            FB.AppEvents.logPageView();
+            isLoadedFacebook = true;
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+    </script>
+
+<script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '700313553710795');
+        fbq('track', 'PageView');
+    </script>
+
+<link href="/Themes/TheCodeCampPro/Resources/Lib/prism-1.2/prism.min.css?fileHash=JwTOjogoc2Lzn2P6M2VItw%3d%3d" rel="stylesheet" type="text/css">
+<link href="/Themes/TheCodeCampPro/Resources/App/Styles/blog/blog.min.css?fileHash=V7AukTnJ1B2BJyq6HDbxeQ%3d%3d" rel="stylesheet" type="text/css">
+<link href="/Themes/TheCodeCampPro/Resources/App/Styles/comment.min.css?fileHash=o37SIXEDzJ24L2%2fzs6ai3A%3d%3d" rel="stylesheet" type="text/css">
+<link href="/Themes/TheCodeCampPro/Resources/Lib/bootstrap/bootstrap.min.css?fileHash=8rjGbW6Fb7jriolaJRgx6Q%3d%3d" rel="stylesheet" type="text/css">
+<link href="/Themes/TheCodeCampPro/Resources/Lib/font-codelearn/styles.min.css?fileHash=Fcy%2bP75Hy6R1tENpGsYhuA%3d%3d" rel="stylesheet" type="text/css">
+<link href="/Themes/TheCodeCampPro/Resources/App/Styles/common.min.css?fileHash=%2boM9XVmTIrYZTc4%2bdijLIg%3d%3d" rel="stylesheet" type="text/css">
+<link href="/Themes/TheCodeCampPro/Resources/App/Styles/Site.min.css?fileHash=HZIaR6rUqLpH6WQAuW4eyw%3d%3d" rel="stylesheet" type="text/css">
+<link href="/Themes/TheCodeCampPro/Resources/App/Styles/login-modal.min.css?fileHash=tSzQpHni97oK4CIPMQx44A%3d%3d" rel="stylesheet" type="text/css">
+<script src="/Themes/TheCodeCampPro/Resources/Lib/jquery/jquery.min.js?fileHash=ejlXWurjHXHGOnyj1CERxA%3d%3d" type="text/javascript"></script>
+<script src="/Themes/TheCodeCampPro/Resources/Lib/bootstrap/bootstrap.min.js?fileHash=BMhIUumTexQqxzwoW4lbhQ%3d%3d" type="text/javascript"></script>
+<script src="/Themes/TheCodeCampPro/Resources/Lib/jquery.ui/jquery-ui.min.js?fileHash=7GjoMRjpJr0czELNBpQ7NQ%3d%3d" type="text/javascript"></script>
+<script src="/Themes/TheCodeCampPro/Resources/Lib/anchor.min.js?fileHash=2YFzz7PCZCETtkH%2fHWniRg%3d%3d" type="text/javascript"></script>
+<script src="/Themes/TheCodeCampPro/Resources/Lib/moment/moment.min.js?fileHash=iZm4tdB%2bnGB3rFrGvJQpaA%3d%3d" type="text/javascript"></script>
+<script src="/Themes/TheCodeCampPro/Resources/Lib/moment/moment-with-locales.min.js?fileHash=p5qHEKNRfkl4RqypF5%2bNgQ%3d%3d" type="text/javascript"></script>
+<script src="/Themes/TheCodeCampPro/Resources/Lib/jquery.validation/1.16.0/jquery.validate.min.js?fileHash=SCipQ20WB6bjXDishBIK5Q%3d%3d" type="text/javascript"></script>
+<script src="/Themes/TheCodeCampPro/Resources/Lib/jquery.validation/1.16.0/additional-methods.min.js?fileHash=2bqpIYgwDgMM8FILx3oCEw%3d%3d" type="text/javascript"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6LcMTLMUAAAAAFLLyTIvjCj7k0bAG8ZqjnaTTrQE" type="text/javascript"></script>
+<script src="/Themes/TheCodeCampPro/Resources/App/Scripts/login-form.min.js?fileHash=0uXLYBcswveq26LH2viZ9w%3d%3d" type="text/javascript"></script>
+<script async="" defer="" src="https://apis.google.com/js/platform.js?onload=googleSignIn" type="text/javascript" gapi_processed="true"></script>
+<script src="/Themes/TheCodeCampPro/Resources/App/Scripts/common.min.js?fileHash=MH%2bL8ZqFMUWQ1BAjSAFuZw%3d%3d" type="text/javascript"></script>
+<style type="text/css" data-fbcssmodules="css:fb.css.basecss:fb.css.dialog css:fb.css.iframewidget css:fb.css.customer_chat_plugin_iframe">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_dialog_advanced{border-radius:8px;padding:10px}.fb_dialog_content{background:#fff;color:#373737}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{left:5px;right:auto;top:5px}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{height:100%;left:0;margin:0;overflow:visible;position:absolute;top:-10000px;transform:none;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{background:none;height:auto;min-height:initial;min-width:initial;width:auto}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{clear:both;color:#fff;display:block;font-size:18px;padding-top:20px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .4);bottom:0;left:0;min-height:100%;position:absolute;right:0;top:0;width:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:sticky;top:0}.fb_dialog_content .dialog_header{background:linear-gradient(from(#738aba), to(#2c4987));border-bottom:1px solid;border-color:#043b87;box-shadow:white 0 1px 1px -1px inset;color:#fff;font:bold 14px Helvetica, sans-serif;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:linear-gradient(from(#4267B2), to(#2a4887));background-clip:padding-box;border:1px solid #29487d;border-radius:3px;display:inline-block;line-height:18px;margin-top:3px;max-width:85px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{background:none;border:none;color:#fff;font:bold 12px Helvetica, sans-serif;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #4a4a4a;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f5f6f7;border:1px solid #4a4a4a;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-position:50% 50%;background-repeat:no-repeat;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}
+.fb_mpn_mobile_landing_page_slide_in{animation-duration:200ms;animation-name:fb_mpn_landing_page_slide_in;transition-timing-function:ease-in}.fb_mpn_mobile_landing_page_slide_out{animation-duration:200ms;animation-name:fb_mpn_landing_page_slide_out;transition-timing-function:ease-in}.fb_mpn_mobile_landing_page_slide_out_from_left{animation-duration:200ms;animation-name:fb_mpn_landing_page_slide_out_from_left;transition-timing-function:ease-in}.fb_mpn_mobile_landing_page_slide_up{animation-duration:500ms;animation-name:fb_mpn_landing_page_slide_up;transition-timing-function:ease-in}.fb_mpn_mobile_bounce_in{animation-duration:300ms;animation-name:fb_mpn_bounce_in;transition-timing-function:ease-in}.fb_mpn_mobile_bounce_out{animation-duration:300ms;animation-name:fb_mpn_bounce_out;transition-timing-function:ease-in}.fb_customer_chat_bounce_in_v2{animation-duration:300ms;animation-name:fb_bounce_in_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_in_from_left{animation-duration:300ms;animation-name:fb_bounce_in_from_left;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_v2{animation-duration:300ms;animation-name:fb_bounce_out_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_from_left{animation-duration:300ms;animation-name:fb_bounce_out_from_left;transition-timing-function:ease-in}.fb_customer_chat_bounce_in_v2_mobile_chat_started{animation-duration:300ms;animation-name:fb_bounce_in_v2_mobile_chat_started;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_v2_mobile_chat_started{animation-duration:300ms;animation-name:fb_bounce_out_v2_mobile_chat_started;transition-timing-function:ease-in}.fb_customer_chat_bubble_pop_in{animation-duration:250ms;animation-name:fb_customer_chat_bubble_bounce_in_animation}.fb_customer_chat_bubble_animated_no_badge{box-shadow:0 3px 12px rgba(0, 0, 0, .15);transition:box-shadow 150ms linear}.fb_customer_chat_bubble_animated_no_badge:hover{box-shadow:0 5px 24px rgba(0, 0, 0, .3)}.fb_customer_chat_bubble_animated_with_badge{box-shadow:-5px 4px 14px rgba(0, 0, 0, .15);transition:box-shadow 150ms linear}.fb_customer_chat_bubble_animated_with_badge:hover{box-shadow:-5px 8px 24px rgba(0, 0, 0, .2)}.fb_invisible_flow{display:inherit;height:0;overflow-x:hidden;width:0}.fb_mobile_overlay_active{background-color:#fff;height:100%;overflow:hidden;position:fixed;visibility:hidden;width:100%}.fb_new_ui_mobile_overlay_active{overflow:hidden}@keyframes fb_mpn_landing_page_slide_in{0%{border-radius:50%;margin:0 24px;width:60px}40%{border-radius:18px}100%{margin:0 12px;width:100% - 24px}}@keyframes fb_mpn_landing_page_slide_in_from_left{0%{border-radius:50%;left:12px;margin:0 24px;width:60px}40%{border-radius:18px}100%{left:12px;margin:0 12px;width:100% - 24px}}@keyframes fb_mpn_landing_page_slide_out{0%{margin:0 12px;width:100% - 24px}60%{border-radius:18px}100%{border-radius:50%;margin:0 24px;width:60px}}@keyframes fb_mpn_landing_page_slide_out_from_left{0%{left:12px;width:100% - 24px}60%{border-radius:18px}100%{border-radius:50%;left:12px;width:60px}}@keyframes fb_mpn_landing_page_slide_up{0%{bottom:0;opacity:0}100%{bottom:24px;opacity:1}}@keyframes fb_mpn_bounce_in{0%{opacity:.5;top:100%}100%{opacity:1;top:0}}@keyframes fb_mpn_bounce_out{0%{opacity:1;top:0}100%{opacity:.5;top:100%}}@keyframes fb_bounce_in_v2{0%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}50%{transform:scale(1.03, 1.03);transform-origin:bottom right}100%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}}@keyframes fb_bounce_in_from_left{0%{opacity:0;transform:scale(0, 0);transform-origin:bottom left}50%{transform:scale(1.03, 1.03);transform-origin:bottom left}100%{opacity:1;transform:scale(1, 1);transform-origin:bottom left}}@keyframes fb_bounce_in_v2_mobile_chat_started{0%{opacity:0;top:20px}100%{opacity:1;top:0}}@keyframes fb_bounce_out_v2{0%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}100%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}}@keyframes fb_bounce_out_from_left{0%{opacity:1;transform:scale(1, 1);transform-origin:bottom left}100%{opacity:0;transform:scale(0, 0);transform-origin:bottom left}}@keyframes fb_bounce_out_v2_mobile_chat_started{0%{opacity:1;top:0}100%{opacity:0;top:20px}}@keyframes fb_customer_chat_bubble_bounce_in_animation{0%{bottom:6pt;opacity:0;transform:scale(0, 0);transform-origin:center}70%{bottom:18pt;opacity:1;transform:scale(1.2, 1.2)}100%{transform:scale(1, 1)}}</style><style>
+      .glot-sub-active{
+        color: #1296ba !important;
+      }
+      
+      .glot-sub-hovered{
+        color: #1296ba !important;
+      }
+      .glot-sub-clzz{
+        cursor: pointer;
+      }
+      .glot-sub-clzz:hover{
+        color: #1296ba !important;
+      }
+      </style></head>
+<body class="hold-transition site-body skin-sku-light layout-top-nav sharing " cz-shortcut-listen="true">
+<script>
+        //<![CDATA[
+        var LANG_CURRENT = "vn";
+        const CurrentUserId = 0;
+        const NOTTIFY_USER_ACCESSKEY ='nottifyAccessKey';
+        const IS_ADMIN = false;
+        
+        PKLService.init({ strVersion: '798184607', strLangCode: 'vn', IsHasLogin: false, url: location.origin });
+        //]]>
+</script>
+<div id="layout-navigation" class="group ">
+<div class="zone zone-navigation">
+<article class="widget-navigation widget-menu-widget widget is-sticky" style="height: 69px;">
+<header class="navbar site-header">
+
+<div class="wrap-site-logo">
+<a title="CodeLearn" href="/">
+<img alt="CodeLearn nền tảng dạy lập trình trực tuyến" class="site-logo" src="/Themes/TheCodeCampPro/Resources/Images/new-header/codelearn-logo.png">
+<img alt="CodeLearn lập trình mỗi ngày" class="site-logo-mobile" src="/Themes/TheCodeCampPro/Resources/Images/new-header/codelearn-mobile-logo.png">
+</a>
+</div>
+<div class="wrap-right-header">
+<input type="checkbox" id="mobile-menu-cb" name="mobile-menu-cb">
+<label class="hamburger-button" for="mobile-menu-cb">
+<span class="hamburger-icon"></span>
+</label>
+<label class="hamburger-menu-mask" for="mobile-menu-cb"></label>
+<nav class="site-menu">
+<ul class="menu menu-main-menu">
+<li><a href="/learning">Học tập</a>
+</li>
+<li><a href="/training">Luyện tập</a>
+</li>
+<li><a href="/fights">Thi đấu</a>
+</li>
+<li><a href="/challenge">Thử thách</a>
+</li>
+<li><a href="/evaluating">Đánh giá</a>
+</li>
+<li><a href="/discussion">Thảo luận</a>
+</li>
+<li><a href="/leaderboard">Xếp hạng</a>
+</li>
+<li><a href="/game">Trò chơi</a>
+</li>
+<li class="current"><a href="/sharing">Chia sẻ</a>
+</li>
+</ul>
+<div class="dropdown dropdown-language">
+<a href="#" class="dropdown-toggle btn-dark btn--language " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Tiếng Việt">
+<img alt="Tiếng Việt" class="button-language btn-img flag" src="/Themes/TheCodeCampPro/Resources/Images/vn.png">
+</a>
+<ul class="dropdown-menu">
+<li>
+<span class="change-lang" data-link="/language/setLanguageLocal?name=en&amp;redirectUrl=">
+<img alt="en" class="icon-language" src="/Themes/TheCodeCampPro/Resources/Images/en.png">
+English
+</span>
+</li>
+<li>
+<span class="change-lang" data-link="/language/setLanguageLocal?name=vn&amp;redirectUrl=">
+<img alt="vn" class="icon-language" src="/Themes/TheCodeCampPro/Resources/Images/vn.png">
+Tiếng Việt
+</span>
+</li>
+</ul>
+</div>
+</nav>
+
+
+<ul class="site-user-menu">
+<li>
+<button id="login-header" class="btn btn-login" data-toggle="modal" data-target="#loginModal" onclick="openModal('login')">Đăng nhập</button>
+<button class="btn" data-toggle="modal" data-target="#loginModal" onclick="openModal('signup')">Đăng ký</button>
+</li>
+</ul>
+</div>
+</header>
+</article>
+<article class="widget-navigation widget-bread-cumps-widget widget">
+<nav aria-label="breadcrumb">
+<div class="container">
+<ol class="breadcrumb">
+<li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+<li class="breadcrumb-item"><a href="/sharing/game-caro-qua-mang-lan-bang-python">Chia sẻ</a></li>
+</ol>
+</div>
+</nav>
+
+
+</article></div>
+</div>
+<main id="layout-main" class="group">
+<div id="layout-content" class="group">
+<div id="content" class="group">
+<div class="zone zone-content">
+<script>
+    var preview = true;
+    var isPublish = false;
+    var id = 1411199;
+    var blogId = 'game-caro-qua-mang-lan-bang-python';
+    var userId = 0;
+    var ownerId = 164122;
+</script>
+
+<div class="container">
+<div class="blog-detail">
+<div class="row">
+<div class="col-md-9 main-blog">
+<div class="wrapper">
+<div class="row author">
+<div class="col-sm-7 text-left">
+<span>Tác giả</span>
+<span class="author-name"><a href="/profile/164122">duyduysysy</a> </span>
+<span class="time-icon"><i class="cl-icon-circle"></i></span>
+<span id="create-time" class="time">2020-05-19</span>
+</div>
+<div class="col-sm-5 text-right">
+<span class="comment-icon"><i class="cl-icon-eye"></i></span>
+<span class="comment-text total-view">3877</span>
+<span class="comment-icon"><i class="cl-icon-share-alt"></i></span>
+<span class="comment-text">21</span>
+</div>
+</div>
+<div class="row main-content">
 <div class="col-md-12">
 <div class="main-image">
 <img src="/Upload/Blog/game-caro-qua-mang-lan-bang-python-63725711613.2609.jpg" alt="Làm Game Cờ Caro Qua Mạng LAN Bằng Python">
@@ -262,3 +549,569 @@
 </div>
 </div>
 </div>
+</div>
+<div class="row sharing">
+<div class="col-sm-8 text-left tag-lists">
+<a href="/sharing/tags/python" class="tag-list" title="python">python</a>
+<a href="/sharing/tags/game" class="tag-list" title="game">game</a>
+<a href="/sharing/tags/lap-trinh" class="tag-list" title="lap-trinh">lap-trinh</a>
+</div>
+<div class="col-sm-4 text-right share">
+<div class="fb-share-button fb_iframe_widget" data-layout="button" data-size="small" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=648326032295473&amp;container_width=0&amp;href=https%3A%2F%2Fcodelearn.io%2Fsharing%2Fgame-caro-qua-mang-lan-bang-python&amp;layout=button&amp;locale=en_US&amp;sdk=joey&amp;size=small"><span style="vertical-align: bottom; width: 67px; height: 20px;"><iframe name="fd456ad3523598" width="1000px" height="1000px" data-testid="fb:share_button Facebook Social Plugin" title="fb:share_button Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="https://www.facebook.com/v7.0/plugins/share_button.php?app_id=648326032295473&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df1574b93f0ce168%26domain%3Dcodelearn.io%26origin%3Dhttps%253A%252F%252Fcodelearn.io%252Ff1f42bf91f5973c%26relation%3Dparent.parent&amp;container_width=0&amp;href=https%3A%2F%2Fcodelearn.io%2Fsharing%2Fgame-caro-qua-mang-lan-bang-python&amp;layout=button&amp;locale=en_US&amp;sdk=joey&amp;size=small" style="border: none; visibility: visible; width: 67px; height: 20px;" class=""></iframe></span></div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div class="comment-area">
+<div class="user-rating">
+<div id="star-rating" class="star-rating rate-block">
+<span class="avg-rate" style="width:100.0%"></span>
+<span class="vote-rate">
+<span title="Vui lòng đăng nhập để đánh giá bài viết." value="1" class="star"><i class="icon cl-icon-star star"></i></span>
+<span title="Vui lòng đăng nhập để đánh giá bài viết." value="2" class="star"><i class="icon cl-icon-star star"></i></span>
+<span title="Vui lòng đăng nhập để đánh giá bài viết." value="3" class="star"><i class="icon cl-icon-star star"></i></span>
+<span title="Vui lòng đăng nhập để đánh giá bài viết." value="4" class="star"><i class="icon cl-icon-star star"></i></span>
+<span title="Vui lòng đăng nhập để đánh giá bài viết." value="5" class="star"><i class="icon cl-icon-star star"></i></span>
+</span>
+</div>
+<span id="container-rate" class="">
+<span id="average-rate">5.0</span> (<span id="total-rating">11</span> đánh giá)
+</span>
+</div>
+<a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal" onclick="openModal('login')" class="not-auth">Vui lòng đăng nhập để bình luận</a>
+<div id="container-comment">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="related-items">
+<b class="related">Bài viết liên quan</b>
+<div id="related-items" class="list">
+<div class="item">
+<div class="row">
+<div class="col-sm-3 image">
+<a href="/sharing/make-python-faster-with-numba">
+<img src="/Upload/Blog/make-python-faster-with-numba-63744329026.8256.jpg" alt="Lên Đời Tốc Độ Phép Tính Toán Trong Python Với Numba">
+</a>
+</div>
+<div class="col-sm-9 info">
+<div class="top">
+<h3>
+<a title="Lên Đời Tốc Độ Phép Tính Toán Trong Python Với Numba" href="/sharing/make-python-faster-with-numba">Lên Đời Tốc Độ Phép Tính Toán Trong Python Với Numba</a>
+</h3>
+<div class="user-rating pull-right">
+<div class="user-rating">
+<span class="star-rating"><span style="width:100.0%"></span></span>
+</div>
+</div>
+<p>Tin được không ? Python có thể tính toán nhanh như (thậm chí là nhanh hơn) C++</p>
+</div>
+<div class="bottom">
+<div class="row tag-list">
+<div class="col-md-12 tag-scroll">
+<span><a href="/sharing/tags/python">python</a></span>
+<span><a href="/sharing/tags/numba">numba</a></span>
+<span><a href="/sharing/tags/c%2b%2b">c++</a></span>
+<span><a href="/sharing/tags/programming">programming</a></span>
+<span><a href="/sharing/tags/hoc-lap-trinh">hoc-lap-trinh</a></span>
+</div>
+</div>
+<div class="author">
+<span>Tác giả:</span>
+<a title="Quangvinh1986" href="/profile/934495">
+<span class="author-name">Quangvinh1986</span>
+</a>
+<span class="time-icon"><i class="cl-icon-circle"></i></span>
+<span class="time">2020-12-24</span>
+<span class="time-icon"><i class="cl-icon-circle"></i></span>
+<span class="comment-icon"><i class="cl-icon-eye"></i></span>
+<span class="comment-text total-view">188</span>
+<span class="comment-icon"><i class="cl-icon-share-alt"></i></span>
+<span class="comment-text">1</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="item">
+<div class="row">
+<div class="col-sm-3 image">
+<a href="/sharing/pascal-di-vang">
+<img src="/Upload/Blog/pascal-di-vang-63744243640.3036.jpg" alt="Pascal Đi Vắng!">
+</a>
+</div>
+<div class="col-sm-9 info">
+<div class="top">
+<h3>
+<a title="Pascal Đi Vắng!" href="/sharing/pascal-di-vang">Pascal Đi Vắng!</a>
+</h3>
+<div class="user-rating pull-right">
+<div class="user-rating">
+<span class="star-rating"><span style="width:96.0%"></span></span>
+</div>
+</div>
+<p>Pascal là nỗi "ám ảnh" của rất nhiều bạn. Nơi mà đã sinh ra được rất nhiều huyền thoại gánh lớp, nhưng giờ có lẽ sắp phải đi vắng rồi!</p>
+</div>
+<div class="bottom">
+<div class="row tag-list">
+<div class="col-md-12 tag-scroll">
+<span><a href="/sharing/tags/pascal">pascal</a></span>
+<span><a href="/sharing/tags/python">python</a></span>
+<span><a href="/sharing/tags/c%2b%2b">c++</a></span>
+<span><a href="/sharing/tags/hoc-lap-trinh">hoc-lap-trinh</a></span>
+</div>
+</div>
+<div class="author">
+<span>Tác giả:</span>
+<a title="quochieuu" href="/profile/174277">
+<span class="author-name">quochieuu</span>
+</a>
+<span class="time-icon"><i class="cl-icon-circle"></i></span>
+<span class="time">2020-12-23</span>
+<span class="time-icon"><i class="cl-icon-circle"></i></span>
+<span class="comment-icon"><i class="cl-icon-eye"></i></span>
+<span class="comment-text total-view">1852</span>
+<span class="comment-icon"><i class="cl-icon-share-alt"></i></span>
+<span class="comment-text">102</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="item">
+<div class="row">
+<div class="col-sm-3 image">
+<a href="/sharing/build-url-shortener-by-django">
+<img src="/Upload/Blog/build-URL-Shortener-by-django-63744166008.4524.jpg" alt="Xây Dựng Ứng Dụng Thu Gọn URL Với Django">
+</a>
+</div>
+<div class="col-sm-9 info">
+<div class="top">
+<h3>
+<a title="Xây Dựng Ứng Dụng Thu Gọn URL Với Django" href="/sharing/build-url-shortener-by-django">Xây Dựng Ứng Dụng Thu Gọn URL Với Django</a>
+</h3>
+<div class="user-rating pull-right">
+<div class="user-rating">
+<span class="star-rating"><span style="width:100.0%"></span></span>
+</div>
+</div>
+<p>Cách nhanh và hiệu quả nhất để học tốt lập trình là bắt tay vào code. Bài viết sau đây sẽ hướng dẫn các bạn xây dựng một ứng dụng thu gọn url bằng framework django.</p>
+</div>
+<div class="bottom">
+<div class="row tag-list">
+<div class="col-md-12 tag-scroll">
+<span><a href="/sharing/tags/python">python</a></span>
+<span><a href="/sharing/tags/django">django</a></span>
+<span><a href="/sharing/tags/url-shortenner">url-shortenner</a></span>
+<span><a href="/sharing/tags/app">app</a></span>
+<span><a href="/sharing/tags/programming">programming</a></span>
+</div>
+</div>
+<div class="author">
+<span>Tác giả:</span>
+<a title="Quangvinh1986" href="/profile/934495">
+<span class="author-name">Quangvinh1986</span>
+</a>
+<span class="time-icon"><i class="cl-icon-circle"></i></span>
+<span class="time">2020-12-22</span>
+<span class="time-icon"><i class="cl-icon-circle"></i></span>
+<span class="comment-icon"><i class="cl-icon-eye"></i></span>
+<span class="comment-text total-view">152</span>
+<span class="comment-icon"><i class="cl-icon-share-alt"></i></span>
+<span class="comment-text">1</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="item">
+<div class="row">
+<div class="col-sm-3 image">
+<a href="/sharing/build-console-rich-content-by-ptyhon">
+<img src="/Upload/Blog/build-console-rich-content-by-ptyhon-63743608812.9443.jpg" alt="Trình Diễn Mọi Nội Dung Trên Nền Đen Trắng Bằng Python?">
+</a>
+</div>
+<div class="col-sm-9 info">
+<div class="top">
+<h3>
+<a title="Trình Diễn Mọi Nội Dung Trên Nền Đen Trắng Bằng Python?" href="/sharing/build-console-rich-content-by-ptyhon">Trình Diễn Mọi Nội Dung Trên Nền Đen Trắng Bằng Python?</a>
+</h3>
+<div class="user-rating pull-right">
+<div class="user-rating">
+<span class="star-rating"><span style="width:100.0%"></span></span>
+</div>
+</div>
+<p>Làm thế nào để đánh tan sự đơn điệu của màn hình nền đen chữ trắng của terminal/console và biểu diễn mọi thứ mà bạn muốn như trên nền Web?</p>
+</div>
+<div class="bottom">
+<div class="row tag-list">
+<div class="col-md-12 tag-scroll">
+<span><a href="/sharing/tags/python">python</a></span>
+<span><a href="/sharing/tags/rich">rich</a></span>
+<span><a href="/sharing/tags/rich-console">rich-console</a></span>
+<span><a href="/sharing/tags/programming">programming</a></span>
+</div>
+</div>
+<div class="author">
+<span>Tác giả:</span>
+<a title="Quangvinh1986" href="/profile/934495">
+<span class="author-name">Quangvinh1986</span>
+</a>
+<span class="time-icon"><i class="cl-icon-circle"></i></span>
+<span class="time">2020-12-16</span>
+<span class="time-icon"><i class="cl-icon-circle"></i></span>
+<span class="comment-icon"><i class="cl-icon-eye"></i></span>
+<span class="comment-text total-view">211</span>
+<span class="comment-icon"><i class="cl-icon-share-alt"></i></span>
+<span class="comment-text">1</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="item">
+<div class="row">
+<div class="col-sm-3 image">
+<a href="/sharing/lam-quen-voi-unittest-trong-python">
+<img src="/Upload/Blog/lam-quen-voi-unittest-trong-python-63743122205.2372.jpg" alt="Làm Quen Với UnitTest Trong Python">
+</a>
+</div>
+<div class="col-sm-9 info">
+<div class="top">
+<h3>
+<a title="Làm Quen Với UnitTest Trong Python" href="/sharing/lam-quen-voi-unittest-trong-python">Làm Quen Với UnitTest Trong Python</a>
+</h3>
+<div class="user-rating pull-right">
+<div class="user-rating">
+<span class="star-rating"><span style="width:100.0%"></span></span>
+</div>
+</div>
+<p>Làm thế nào để đảm bảo việc tái cấu trúc code (code refactoring) không ảnh hưởng đến việc vận hành sản phẩm? Câu trả lời bắt đầu từ Unit-test.</p>
+</div>
+<div class="bottom">
+<div class="row tag-list">
+<div class="col-md-12 tag-scroll">
+<span><a href="/sharing/tags/python">python</a></span>
+<span><a href="/sharing/tags/unit-test">unit-test</a></span>
+<span><a href="/sharing/tags/programming">programming</a></span>
+<span><a href="/sharing/tags/hoc-lap-trinh">hoc-lap-trinh</a></span>
+<span><a href="/sharing/tags/refactor">refactor</a></span>
+</div>
+</div>
+<div class="author">
+<span>Tác giả:</span>
+<a title="Quangvinh1986" href="/profile/934495">
+<span class="author-name">Quangvinh1986</span>
+</a>
+<span class="time-icon"><i class="cl-icon-circle"></i></span>
+<span class="time">2020-12-10</span>
+<span class="time-icon"><i class="cl-icon-circle"></i></span>
+<span class="comment-icon"><i class="cl-icon-eye"></i></span>
+<span class="comment-text total-view">366</span>
+<span class="comment-icon"><i class="cl-icon-share-alt"></i></span>
+<span class="comment-text">23</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-3 sidebar">
+<div class="block author-info">
+<h3>Tác giả</h3>
+<div class="author">
+<div class="avatar">
+<img id="owner-level-avatar" class="level-avatar" src="/Themes/TheCodeCampPro/Resources/Images/level-avatars/User-01.svg?v=3">
+<img id="owner-user-avatar" class="user-avatar" src="/CodeCamp/CodeCamp/Upload/Avatar/b92261d8c3fc4dec96abb3c4f331feaa.jpg">
+</div>
+<div class="user-name">
+<a id="owner" href="/profile/164122" title="duyduysysy">duyduysysy</a>
+</div>
+<p id="company-owner"> - </p>
+<div>
+<a href="/sharing/post/duyduysysy" id="total-post" class="total-post">4 bài viết</a> |
+<span id="total-follow">13</span> <span class="follower-text">người theo dõi</span>
+</div>
+<div>
+<button id="follow" value="0" type="button" class="btn btn-info not-allowed" title="Vui lòng đăng nhập để theo dõi tác giả."><i class="cl-icon-rss"></i> Theo dõi</button>
+</div>
+<ul id="achievement-owner"><li class=""><i class="cl-icon-check-circle"></i><span>- 20 năm chưa một cuộc tình vắt vai</span></li><li class=""><i class="cl-icon-check-circle"></i><span>- Giải nhất NCKH cấp tỉnh 2017</span></li><li class=""><i class="cl-icon-check-circle"></i><span>- Giải ba Smart Campus Đại học Đà Nẵng</span></li></ul>
+<span id="more-achievement" class="hide">Xem thêm</span>
+<div class="social-network">
+<a id="facebook" target="_blank" href="https://www.facebook.com/duyduysysy" class=""><i class="cl-icon-facebook-f"></i></a>
+<a id="twitter" href="javaScript:void(0)" class="not-allowed"><i class="cl-icon-twitter-full"></i></a>
+<a id="linkedIn" target="_blank" href="https://www.linkedin.com/in/nguy%E1%BB%85n-s%E1%BB%B9-3b2214164/" class=""><i class="cl-icon-linkedin"></i></a>
+</div>
+</div>
+</div>
+<div class="block related-owner">
+<h3>Bài viết cùng tác giả</h3>
+<div class="list-items">
+<div class="item">
+<a href="/sharing/lap-trinh-game-flappybird-voi-python" title="Lập Trình Game Flappybird Với Python"><img src="/Upload/Blog/lam-game-flappybird-bang-python-63726952535.7393.jpg" alt="Lập Trình Game Flappybird Với Python"></a>
+<a title="Lập Trình Game Flappybird Với Python" href="/sharing/lap-trinh-game-flappybird-voi-python">Lập Trình Game Flappybird Với Python</a>
+</div>
+<div class="item">
+<a href="/sharing/lam-game-space-invaders-bang-python" title="Làm Game Space Invaders Bằng Python"><img src="/Upload/Blog/lam-game-space-invaders-bang-python-63726507572.174.jpg" alt="Làm Game Space Invaders Bằng Python"></a>
+<a title="Làm Game Space Invaders Bằng Python" href="/sharing/lam-game-space-invaders-bang-python">Làm Game Space Invaders Bằng Python</a>
+</div>
+<div class="item">
+<a href="/sharing/lam-ung-dung-den-led-voi-micropython" title="Làm Ứng Dụng Nhấp Nháy Đèn Led Với Micropython"><img src="/Upload/Blog/micropython-ung-dung-nhap-nhay-den-led-63726171633.9902.jpg" alt="Làm Ứng Dụng Nhấp Nháy Đèn Led Với Micropython"></a>
+<a title="Làm Ứng Dụng Nhấp Nháy Đèn Led Với Micropython" href="/sharing/lam-ung-dung-den-led-voi-micropython">Làm Ứng Dụng Nhấp Nháy Đèn Led Với Micropython</a>
+</div>
+</div>
+</div>
+
+<div class="block new-posts">
+<h3>Đọc nhiều</h3>
+<div id="list-items" class="list-items">
+<div class="item">
+<a title="10 Chứng Chỉ IT Được Trả Lương Cao Nhất Năm 2020" href="/sharing/10-chung-chi-it-duoc-tra-luong-cao-nhat-nam-2020">10 Chứng Chỉ IT Được Trả Lương Cao Nhất Năm 2020</a>
+</div>
+<div class="item">
+<a title="Hướng Dẫn Cài Đặt Visual Studio Code Lập Trình C++" href="/sharing/huong-dan-cai-dat-visual-studio-code-lap-trinh-cpp">Hướng Dẫn Cài Đặt Visual Studio Code Lập Trình C++</a>
+</div>
+<div class="item">
+<a title="Nên Học Ngành Gì Trong Công Nghệ Thông Tin ?" href="/sharing/nen-hoc-nganh-gi-trong-cntt">Nên Học Ngành Gì Trong Công Nghệ Thông Tin ?</a>
+</div>
+<div class="item">
+<a title="Lập Trình Game Với Unity Như Thế Nào (Phần 1)" href="/sharing/lap-trinh-game-voi-unity-nhu-the-nao-phan-1">Lập Trình Game Với Unity Như Thế Nào (Phần 1)</a>
+</div>
+<div class="item">
+<a title="Xử Lý Tràn Số Trong C/C++" href="/sharing/xu-ly-tran-so-trong-cc">Xử Lý Tràn Số Trong C/C++</a>
+</div>
+</div>
+</div>
+<div class="block top-authors">
+<h3>Tác giả hàng đầu</h3>
+<div id="list-user" class="list-user">
+<div class="row item">			            <div class="col-sm-3 avatar">				            <a href="/profile/3305">					            <img class="level-avatar" src="/Themes/TheCodeCampPro/Resources/Images/level-avatars/User-11.svg?v=3">					            <img class="user-avatar" src="/CodeCamp/CodeCamp/Upload/Avatar/e1907b3b49a84df1927e3b686d9324f2.jpg">				            </a>			            </div>			            <div class="col-sm-9 user-name">				            <a title="3ron" href="/profile/3305">3ron</a>			            </div>		             </div><div class="row item">			            <div class="col-sm-3 avatar">				            <a href="/profile/415342">					            <img class="level-avatar" src="/Themes/TheCodeCampPro/Resources/Images/level-avatars/User-01.svg?v=3">					            <img class="user-avatar" src="/CodeCamp/CodeCamp/Upload/Avatar/3afd508df34a4b9595e048d09d1e0306.jpg">				            </a>			            </div>			            <div class="col-sm-9 user-name">				            <a title="T_Flower" href="/profile/415342">T_Flower</a>			            </div>		             </div><div class="row item">			            <div class="col-sm-3 avatar">				            <a href="/profile/600133">					            <img class="level-avatar" src="/Themes/TheCodeCampPro/Resources/Images/level-avatars/User-02.svg?v=3">					            <img class="user-avatar" src="/CodeCamp/CodeCamp/Upload/Avatar/ceb1da45691c4ea8ac68ed4e98196893.jpg">				            </a>			            </div>			            <div class="col-sm-9 user-name">				            <a title="Phanhtrinh" href="/profile/600133">Phanhtrinh</a>			            </div>		             </div><div class="row item">			            <div class="col-sm-3 avatar">				            <a href="/profile/934495">					            <img class="level-avatar" src="/Themes/TheCodeCampPro/Resources/Images/level-avatars/User-01.svg?v=3">					            <img class="user-avatar" src="/CodeCamp/CodeCamp/Upload/Avatar/39d1cb5bbee141b4ac5862f1013c59cf.jpg">				            </a>			            </div>			            <div class="col-sm-9 user-name">				            <a title="Quangvinh1986" href="/profile/934495">Quangvinh1986</a>			            </div>		             </div><div class="row item">			            <div class="col-sm-3 avatar">				            <a href="/profile/397945">					            <img class="level-avatar" src="/Themes/TheCodeCampPro/Resources/Images/level-avatars/User-07.svg?v=3">					            <img class="user-avatar" src="/CodeCamp/CodeCamp/Upload/Avatar/ef8d7c84bf5f4ce1bdef1d277eff0114.jpg">				            </a>			            </div>			            <div class="col-sm-9 user-name">				            <a title="Khoaa" href="/profile/397945">Khoaa</a>			            </div>		             </div></div>
+</div>
+<div class="block hashtag">
+<h3>Hashtag</h3>
+<div id="tag-list" class="tag-list">
+<span><a href="/sharing/tags/python">python</a></span>
+<span><a href="/sharing/tags/lap-trinh">lap-trinh</a></span>
+<span><a href="/sharing/tags/game">game</a></span>
+</div>
+</div>
+<div class="block">
+<div class="fb-page fb_iframe_widget" data-href="https://www.facebook.com/CodeLearnFanpage" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" fb-xfbml-state="rendered" fb-iframe-plugin-query="adapt_container_width=true&amp;app_id=648326032295473&amp;container_width=0&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2FCodeLearnFanpage&amp;locale=en_US&amp;sdk=joey&amp;show_facepile=true&amp;small_header=false&amp;tabs=timeline&amp;width="><span style="vertical-align: bottom; width: 340px; height: 500px;"><iframe name="f2c58e1def05f64" width="1000px" height="1000px" data-testid="fb:page Facebook Social Plugin" title="fb:page Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="https://www.facebook.com/v7.0/plugins/page.php?adapt_container_width=true&amp;app_id=648326032295473&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Dfe65a52ca8f5b4%26domain%3Dcodelearn.io%26origin%3Dhttps%253A%252F%252Fcodelearn.io%252Ff1f42bf91f5973c%26relation%3Dparent.parent&amp;container_width=0&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2FCodeLearnFanpage&amp;locale=en_US&amp;sdk=joey&amp;show_facepile=true&amp;small_header=false&amp;tabs=timeline&amp;width=" style="border: none; visibility: visible; width: 340px; height: 500px;" class=""></iframe></span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</main>
+<footer id="footer" class="group codecamp-footer">
+<div class="zone zone-footer">
+<div class=" main-footer">
+<div class="container">
+<div class="row">
+<div class="col-xs-12 col-md-6 introduction footer-column">
+<div class="logo-codelearn">
+<img src="/Themes/TheCodeCampPro/Resources/Images/new-header/codelearn-logo.svg" alt="CodeLearn">
+</div>
+<p>
+CodeLearn là nền tảng tương tác trực tuyến hỗ trợ người dùng học tập, thực hành, thi đấu và đánh giá kỹ năng lập trình một cách nhanh chóng và chính xác.
+</p>
+<a href="https://www.facebook.com/CodeLearnFanpage" title="Facebook" target="_blank" class="social-button">
+<i class="cl-icon-facebook-f"></i>
+</a>
+<a href="https://www.youtube.com/channel/UCpt3dSDGk5fC7uU9OeFG5ig" title="Youtube" target="_blank" class="social-button">
+<i class="cl-icon-youtube"></i>
+</a>
+<a href="https://twitter.com/codelearn_io" title="Twitter" target="_blank" class="social-button">
+<i class="cl-icon-twitter-full"></i>
+</a>
+<a href="https://www.instagram.com/codelearn.io/" title="Instagram" target="_blank" class="social-button">
+<i class="cl-icon-instagram"></i>
+</a>
+</div>
+<div class="col-xs-12 col-sm-4 col-md-2 links footer-column">
+<h4>Liên kết</h4>
+<p><a href="/learning" class="link-menu" title="Học tập">Học tập</a></p>
+<p><a href="/training" class="link-menu" title="Luyện tập">Luyện tập</a></p>
+<p><a href="/fights" class="link-menu" title="Cuộc thi">Cuộc thi</a></p>
+<p><a href="/game/index" class="link-menu" title="Trò chơi">Trò chơi</a></p>
+</div>
+<div class="col-xs-12 col-sm-4 col-md-2 about footer-column">
+<h4>Thông tin</h4>
+<p><a href="/sharing" class="link-menu" title="Chia sẻ">Chia sẻ</a></p>
+<p><a href="/aboutus" title="Về chúng tôi">Về chúng tôi</a></p>
+<p><a href="/terms" title="Điều khoản sử dụng">Điều khoản sử dụng</a></p>
+</div>
+<div class="col-xs-12 col-sm-4 col-md-2 help footer-column">
+<h4>Trợ giúp</h4>
+<p><a href="/help" title="Hỗ trợ">Hỗ trợ</a></p>
+<p><a href="/discussion" title="Thảo luận">Thảo luận</a></p>
+<p><a href="mailto:support@codelearn.io" title="Liên hệ với chúng tôi">Liên hệ với chúng tôi</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="col-xs-12 right-reserved">
+<span class="powerby">
+<img src="/Themes/TheCodeCampPro/Resources/Images/logo-fpt-footer.svg" alt="Fpt software" class="fpt-logo">
+Cung cấp bởi <a href="/">CodeLearn</a>
+</span>
+<span class="copyright">© 2020.</span>
+<span>Đã đăng ký bản quyền rev 12/13/2020 9:14:05 PM</span>
+</div>
+</div>
+</footer>
+<script src="/Themes/TheCodeCampPro/Resources/Lib/prism-1.2/prism.js?fileHash=v7QJWjxpQKUlorfTH21whw%3d%3d" type="text/javascript"></script>
+<script src="/Themes/TheCodeCampPro/Resources/App/Scripts/blog/detail.min.js?fileHash=arnH%2bh7bYmwAlh%2bI7vk01A%3d%3d" type="text/javascript"></script>
+<script src="/Themes/TheCodeCampPro/Resources/App/Scripts/comment.min.js?fileHash=XvFL5LSb7fwSeOGcG0LhNg%3d%3d" type="text/javascript"></script>
+<script type="text/javascript">
+        var loadCommentsTrigger = {};
+
+        $(function () {
+            if (userId > 0) {
+                $.UseCommentModule({
+                containerSelector: "#container-comment",
+                        headerCountSelector: "#total-comments-count",
+                        contentId: 1411199,
+                        loadCommentsUri: "CodeCamp/Comment/GetComments",
+                        postCommentUri: "CodeCamp/Comment/PostComment",
+                        trigger: loadCommentsTrigger,
+                        postLikeCommentUri: "/Discussion/LikeCommentUri",
+                });
+            }
+        });
+    </script>
+<script type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "CreativeWorkSeries",
+            "name": "Làm Game Cờ Caro Qua Mạng LAN Bằng Python",
+            "image": "/Upload/Blog/game-caro-qua-mang-lan-bang-python-63725711613.2609.jpg",
+            "url": "https://codelearn.io/sharing/game-caro-qua-mang-lan-bang-python",
+            "description": "Game cờ Caro không chỉ để giải trí đơn thuần mà là một cuộc đấu trí vô cùng gay cấn. Hôm nay mình sẽ hướng dẫn các bạn lập trình game này với Python nhé",
+            "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue" : "5.0",
+            "ratingCount" : "11",
+            "worstRating":  3,
+            "bestRating": 5
+            }
+            }
+        </script>
+<script async="" defer="" crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&amp;version=v6.0&amp;appId=1616635785136509&amp;autoLogAppEvents=1"></script>
+
+<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div></div></div><div class="fb-customerchat fb_invisible_flow fb_iframe_widget" attribution="setup_tool" page_id="2254662768188202" greeting_dialog_display="hide" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=648326032295473&amp;attribution=setup_tool&amp;container_width=0&amp;greeting_dialog_display=hide&amp;local_state=%7B%22v%22%3A0%2C%22path%22%3A2%2C%22chatState%22%3A1%2C%22visibility%22%3A%22hidden%22%2C%22showUpgradePrompt%22%3A%22not_shown%22%7D&amp;locale=en_US&amp;page_id=2254662768188202&amp;request_time=1609334696505&amp;sdk=joey"><span style="vertical-align: bottom; width: 1000px; height: 0px;"><iframe name="f3465e2b89ee47c" width="1000px" height="1000px" title="" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="https://www.facebook.com/v7.0/plugins/customerchat.php?app_id=648326032295473&amp;attribution=setup_tool&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df472654c9e6154%26domain%3Dcodelearn.io%26origin%3Dhttps%253A%252F%252Fcodelearn.io%252Ff1f42bf91f5973c%26relation%3Dparent.parent&amp;container_width=0&amp;greeting_dialog_display=hide&amp;local_state=%7B%22v%22%3A0%2C%22path%22%3A2%2C%22chatState%22%3A1%2C%22visibility%22%3A%22hidden%22%2C%22showUpgradePrompt%22%3A%22not_shown%22%7D&amp;locale=en_US&amp;page_id=2254662768188202&amp;request_time=1609334696505&amp;sdk=joey" style="padding: 0px; position: fixed; z-index: 2147483646; border-radius: 16px; top: auto; width: 399px; max-height: calc(100% - 80px); background: none; bottom: 85px; right: 4px; margin-right: 12px; visibility: visible;" class="" data-testid="dialog_iframe"></iframe></span></div><div class="fb_dialog  fb_dialog_advanced" style="overflow: visible; z-index: 2147483644;"><div class="fb_dialog_content"><iframe name="blank_f117c30208763e8" width="60px" tabindex="-1" data-testid="bubble_iframe" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="https://www.facebook.com/v7.0/plugins/customer_chat/bubble" style="margin: 0px 12px; padding: 0px; position: fixed; z-index: 2147483644; bottom: 24px; top: auto; height: 60px; width: 60px; border-radius: 29px; box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 12px 0px; background: none; display: block; right: 12px;"></iframe><iframe name="unread_f117c30208763e8" tabindex="-1" data-testid="unread_iframe" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="https://www.facebook.com/v7.0/plugins/customer_chat/bubble" style="bottom: 68px; position: fixed; width: 20px; height: 24px; z-index: 2147483645; border-radius: 4pt; background: none; right: 22px;"></iframe></div></div><div class="fb_dialog  fb_dialog_advanced" style="overflow: visible; z-index: 2147483644;"><div class="fb_dialog_content"><iframe name="blank_f3465e2b89ee47c" width="60px" tabindex="-1" data-testid="bubble_iframe" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="https://www.facebook.com/v7.0/plugins/customer_chat/bubble" style="margin: 0px 12px; padding: 0px; position: fixed; z-index: 2147483644; bottom: 24px; top: auto; height: 60px; width: 60px; border-radius: 29px; box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 12px 0px; background: none; display: block; right: 12px;"></iframe><iframe name="unread_f3465e2b89ee47c" tabindex="-1" data-testid="unread_iframe" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="https://www.facebook.com/v7.0/plugins/customer_chat/bubble" style="bottom: 68px; position: fixed; width: 20px; height: 24px; z-index: 2147483645; border-radius: 4pt; background: none; right: 22px;"></iframe></div></div></div>
+
+<div class="modal fade modal-center" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-body login-modal">
+<div>
+
+<ul class="nav nav-tabs nav-fill" role="tablist">
+<li role="presentation" class="nav-item">
+<a class="nav-link" data-target="#login" aria-controls="login" role="tab" data-toggle="tab" onclick="openModal('login')">Đăng nhập</a>
+</li>
+<li role="presentation" class="nav-item active">
+<a class="nav-link" data-target="#signup" aria-controls="signup" role="tab" data-toggle="tab" onclick="openModal('signup')">Đăng ký</a>
+</li>
+</ul>
+
+<div class="tab-content">
+<h4 class="header-card">Đăng nhập bằng tài khoản</h4>
+<div class="signin-options">
+<button class="btn btn-default btn-block btn--microsoft icon-left" onclick="window.location.replace('https://oauth.codelearn.io/Home/SignIn')" title="Đăng nhập tài khoản FSoft qua Microsoft">
+<i class="cl-icon-windows" aria-hidden="true"></i>
+<span>Microsoft</span>
+</button>
+<button class="btn btn-default btn-block btn--facebook icon-left" onclick="facebookSignIn()">
+<i class="cl-icon-facebook-f" aria-hidden="true"></i>
+<span>Facebook</span>
+</button>
+<button class="btn btn-default btn-block btn--google icon-left" id="googleSignIn">
+<i class="cl-icon-google-full" aria-hidden="true"></i>
+<span>Google</span>
+</button>
+</div>
+<p class="label-or text-center">HOẶC</p>
+<div role="tabpanel" class="tab-pane " id="login">
+<form id="frmLogin">
+<div class="form-group">
+<input name="username" type="text" class="form-control" placeholder="Tên đăng nhập" autocomplete="username">
+<a href="/resend-email" title="Gửi lại thư kích hoạt" class="resend-email hidden">Gửi lại thư kích hoạt</a>
+</div>
+<div class="form-group" style="margin-bottom: 30px;">
+<input name="password" type="password" class="form-control" placeholder="Vui lòng nhập mật khẩu" autocomplete="current-password">
+</div>
+<div class="form-button">
+<button type="submit" class="btn btn-default btn-block btn-blue btn-login">Đăng nhập</button>
+</div>
+<div class="col-md-12 registered-forgot" role="tablist">
+<div class="col-md-6 text-left">
+<a data-target="#signup" aria-controls="signup" role="tab" data-toggle="tab" onclick="openModal('login')">
+Chưa có tài khoản? Đăng ký
+</a>
+</div>
+<div class="col-md-6 text-right">
+<a href="/forgot-password">Quên mật khẩu</a>
+</div>
+</div>
+<div class="col-md-12 terms-of-use">
+Trang này được bảo vệ bởi reCAPTCHA và áp dụng <a href="/terms" target="_blank">Điều khoản sử dụng</a>.
+</div>
+</form>
+</div>
+<div role="tabpanel" class="tab-pane active" id="signup">
+<form id="frmSignup" method="POST" action="/">
+<div class="form-group">
+<input name="username" type="text" class="form-control" placeholder="Tên đăng nhập" autocomplete="username">
+</div>
+<div class="form-group">
+<input name="email" type="email" class="form-control" placeholder="Email" autocomplete="email">
+</div>
+<div class="form-group">
+<input name="password" type="password" class="form-control" placeholder="Mật khẩu" autocomplete="current-password">
+</div>
+<div class="form-check">
+<div class="checkbox-area">
+<input name="cbAgree" type="checkbox" value="1" class="form-check-input" id="cbAgree" data-error="#cbAgree-error">
+<label class="form-check-label" for="cbAgree">
+Tôi đồng ý với <a href="/terms" target="_blank">Điều khoản sử dụng</a> của CodeLearn
+</label>
+</div>
+<div id="cbAgree-error"></div>
+</div>
+<button type="submit" class="btn btn-default btn-block btn-blue btn-signup">Đăng ký</button>
+<div class="col-md-12 registered-forgot" style="margin-bottom: 0;">
+<div class="col-md-6 text-left">
+<a data-target="#login" aria-controls="login" role="tab" data-toggle="tab" onclick="openModal('login')">
+Đã có tài khoản? Đăng nhập
+</a>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        var siteKey = '6LcMTLMUAAAAAFLLyTIvjCj7k0bAG8ZqjnaTTrQE';
+        </script>
+
+<noscript>
+        <img height="1" width="1" style="display:none" alt=""
+             src="https://www.facebook.com/tr?id=700313553710795&ev=PageView&noscript=1" />
+    </noscript>
+
+
+<div><div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; display: block; transition: right 0.3s ease 0s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;"><div class="grecaptcha-logo"><iframe src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LcMTLMUAAAAAFLLyTIvjCj7k0bAG8ZqjnaTTrQE&amp;co=aHR0cHM6Ly9jb2RlbGVhcm4uaW86NDQz&amp;hl=en&amp;v=qc5B-qjP0QEimFYUxcpWJy5B&amp;size=invisible&amp;cb=8qp133b3c6m8" width="818" height="191.71875" role="presentation" name="a-aq5id9bt0q3f" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response-100000" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe width="818" height="409" style="display: none;"></iframe></div><iframe id="ssIFrame_google" sandbox="allow-scripts allow-same-origin" aria-hidden="true" frame-border="0" src="https://accounts.google.com/o/oauth2/iframe#origin=https%3A%2F%2Fcodelearn.io&amp;rpcToken=558485210.7472485" width="818" height="NaN" style="position: absolute; width: 1px; height: 1px; inset: -9999px; display: none;"></iframe><iframe id="nr-ext-rsicon" style="position: absolute; display: none; width: 50px; height: 50px; z-index: 2147483647; border-style: none; background: transparent;" width="818" height="818"></iframe></body></html>
